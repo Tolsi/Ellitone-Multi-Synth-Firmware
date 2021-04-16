@@ -1,0 +1,42 @@
+
+
+
+//  ELLITONE MULTI-SYNTH is powered using the Mozzi Sonification Library for Arduino. 
+
+// I have spent the last 2.5 years exploring this library, finding the atmega328s strong and weak points when processing realtime audio 
+
+// In the following program, I attempted to squeeze as much Mozzi functionality into a single device, paired with a simple "patch and play" interface. 
+
+// Currently, this program uses 99.99% of the atmega328 program storage space. This includes the 6 WaveTable files that represent the WaveForm Shapes  <tables/AKWF_.....h>
+
+//You might be asking "can I use my own waveforms?". Creating custom waveforms for use in mozzi is not a simple or straightforward process. Still, you can look more into this process 
+//by reading through the Mozzi Forum Google Group.
+
+//However, replacing the initial 6 Waveforms with other waveforms from the AKWF library is simple and straightforward! This library contains hundreds of waveshapes that 
+//can all be viewed here:   https://www.adventurekid.se/AKRTfiles/AKWF/view/waveforms_index.html
+
+//to replace the waveforms, First download and install the Arduino IDE:  https://www.arduino.cc/en/Main/Software
+
+//Next, download and unzip the Mozzi file. Take the unzipped Mozzi folder and place it inside the "libraries" folder located within the Arduino Folder, (usually found in My Documents). 
+
+//Now, make sure you have successfully installed the CH340 Driver. This driver allows your computer to communicate with the Ellitones atmega328.
+//If installed correctly, your computer should recognize the Arduino when plugged into USB and it will show up as a COM in Tools > Port menu in Arduino IDE
+
+//Next, under the Tools > Board option, choose NANO 
+
+//Now, Navigate to Documents > Arduino > libraries > Mozzi-1.0.3rc6 > tables
+//Scroll down until you start seeing the files that start with "AKWF" these are all the possible waveforms you can choose from!
+
+//Next, in the #include section below, copy in the waveshape files you want to use instead of the 6 that are currently there.  
+
+//Next, Around Code Line ~93 (current line code # is in bottom left hand corner of Arduino IDE window) make sure that one of your new wavetables is used here instead of old waveform! 
+//Code Line ~246, make sure that one of your new wavetables is used here aswell! 
+
+//Lastly, Code Line ~869 through ~946 is where the actual switching between waveforms happen when you connect different outputs to the WaveForm input. 
+//This is where you will put in all your new selected waveform files! 
+
+//If you wish to try adding new features and modes, one way to quickly free up a bunch of space (to work with) is to #include and use LESS than 6 WaveForms. 
+//You can just use 1 waveform file in all the places listed above and free up ~40% more space for added logic functions!  
+
+//I am more than happy to further explain the following code and its workings if people are interested in taking this device even further! 
+//Feel free to email me at ellistronics.usa@gmail.com 
